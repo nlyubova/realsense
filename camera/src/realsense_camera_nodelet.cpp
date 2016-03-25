@@ -501,11 +501,12 @@ namespace realsense_camera
     std::string get_options_result_str;
     std::string opt_name, opt_value;
 
-    for (option_str o: options)
+//    for (option_str o: options)
+    for(std::vector<option_str>::iterator o=options.begin(); o!=options.end(); ++o)
     {
-      opt_name = rs_option_to_string(o.opt);
-      o.value = rs_get_device_option(rs_device_, o.opt, 0);
-      opt_value = boost::lexical_cast < std::string > (o.value);
+      opt_name = rs_option_to_string(o->opt);
+      o->value = rs_get_device_option(rs_device_, o->opt, 0);
+      opt_value = boost::lexical_cast < std::string > (o->value);
       get_options_result_str += opt_name + ":" + opt_value + ";";
     }
 
@@ -548,15 +549,17 @@ namespace realsense_camera
     std::vector<camera_paramsConfig::AbstractParamDescriptionConstPtr> param_desc = params_config.__getParamDescriptions__();
 
     // Iterate through the supported camera options
-    for (option_str o: options)
+//    for (option_str o: options)
+    for(std::vector<option_str>::const_iterator o=options.begin(); o!=options.end(); ++o)
     {
-      std::string opt_name = rs_option_to_string(o.opt);
+      std::string opt_name = rs_option_to_string(o->opt);
       bool found = false;
 
       std::vector<camera_paramsConfig::AbstractParamDescriptionConstPtr>::iterator it;
-      for (camera_paramsConfig::AbstractParamDescriptionConstPtr param_desc_ptr: param_desc)
+//      for (camera_paramsConfig::AbstractParamDescriptionConstPtr param_desc_ptr: param_desc)
+      for(std::vector<camera_paramsConfig::AbstractParamDescriptionConstPtr>::iterator param_desc_ptr=param_desc.begin(); param_desc_ptr!=param_desc.end(); ++param_desc_ptr)
       {
-        if (opt_name.compare((* param_desc_ptr).name) == 0)
+        if (opt_name.compare((* *param_desc_ptr).name) == 0)
         {
           found = true;
           break;
@@ -574,20 +577,20 @@ namespace realsense_camera
           pnh_.getParam(key, val);
 
           // Validate and set the input values within the min-max range
-          if (val < o.min)
+          if (val < o->min)
           {
-            opt_val = o.min;
+            opt_val = o->min;
           }
-          else if (val > o.max)
+          else if (val > o->max)
           {
-            opt_val = o.max;
+            opt_val = o->max;
           }
           else
           {
             opt_val = val;
           }
           ROS_INFO_STREAM ("RealSense Camera - Static Options: " << opt_name << " = " << opt_val);
-          rs_set_device_option (rs_device_, o.opt, opt_val, &rs_error_);
+          rs_set_device_option (rs_device_, o->opt, opt_val, &rs_error_);
           checkError();
         }
       }
