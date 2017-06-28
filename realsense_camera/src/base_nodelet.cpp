@@ -821,6 +821,14 @@ namespace realsense_camera
             static_cast<double>(depth_scale_meters) / static_cast<double>(MILLIMETER_METERS));
       }
     }
+    else if ((stream_index == RS_STREAM_COLOR)
+      && (format_[stream_index] == RS_FORMAT_YUYV)
+      && (encoding_[stream_index] == sensor_msgs::image_encodings::RGB8))
+    {
+      cv::Mat cvWrapper_YUV(image_[stream_index].rows, image_[stream_index].cols, CV_8UC2, cv::Scalar(0, 0));
+      cvWrapper_YUV.data = (unsigned char *) (frame.get_data());
+      cvtColor(cvWrapper_YUV, image_[stream_index], CV_YUV2RGB_YUYV);
+    }
     else
     {
       image_[stream_index].data = (unsigned char *) (frame.get_data());
