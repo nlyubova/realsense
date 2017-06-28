@@ -56,7 +56,7 @@ namespace realsense_camera
    */
   void ZR300Nodelet::onInit()
   {
-    format_[RS_STREAM_COLOR] = RS_FORMAT_RGB8;
+    format_[RS_STREAM_COLOR] = RS_FORMAT_YUYV;
     encoding_[RS_STREAM_COLOR] = sensor_msgs::image_encodings::RGB8;
     cv_type_[RS_STREAM_COLOR] = CV_8UC3;
     unit_step_size_[RS_STREAM_COLOR] = sizeof(unsigned char) * 3;
