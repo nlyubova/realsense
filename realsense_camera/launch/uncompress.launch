@@ -1,0 +1,9 @@
+<launch>
+  <arg name="image_in"     default="/camera/color/image_raw" />
+  <arg name="image_out"    default="/camera/color/image_color" />
+
+  //republish compressed images to uncompressed images
+  <node name="republish_color" type="republish" pkg="image_transport" output="screen" 
+    args="compressed in:=$(arg image_in) out:=$(arg image_out)"/>
+
+</launch>
