@@ -1,0 +1,9 @@
+<launch>
+  <arg name="image_in"     default="/camera/fisheye/image_raw" />
+  <arg name="image_out"    default="/camera/fisheye/image_mono" />
+
+  //republish compressed images to uncompressed images
+  <node name="republish_fisheye" type="republish" pkg="image_transport" output="screen" 
+    args="compressed in:=$(arg image_in) out:=$(arg image_out)"/>
+
+</launch>
