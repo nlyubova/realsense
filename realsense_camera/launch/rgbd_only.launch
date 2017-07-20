@@ -7,7 +7,7 @@
 
   <!-- Arguments for remapping all device namespaces -->
   <arg name="depth"            default="depth" />
-  <arg name="rgb"              default="rgb" />
+  <arg name="rgb"              default="color" />
   <arg name="ir"               default="ir" />
   <arg name="depth_registered" default="depth_registered" />
   <arg name="projector"        default="projector" />
@@ -39,7 +39,7 @@
   <group ns="$(arg camera)">
 
     <!-- Start nodelet manager in provided namespace -->
-    <arg name="manager" value="$(arg camera)_nodelet_manager" />
+    <arg name="manager" value="$(arg camera)_rgb_nodelet_manager" />
     <arg name="debug" default="false" /> <!-- Run manager in GDB? -->
     <include file="$(find rgbd_launch)/launch/includes/manager.launch.xml">
       <arg name="name"                value="$(arg manager)" />
