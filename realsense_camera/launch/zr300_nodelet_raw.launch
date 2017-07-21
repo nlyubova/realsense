@@ -9,12 +9,15 @@
   <arg name="camera_type"     default="ZR300" />
 
   <!--  ZR300 specific features -->
-  <arg name="enable_fisheye"      default="true" />
-  <arg name="enable_imu"          default="false" />
+  <arg name="enable_fisheye"  default="true" />
+  <arg name="enable_imu"      default="false" />
+
+  <arg name="enable_ir"       default="false" />
+  <arg name="enable_ir2"      default="false" />
 
   <!-- "serial_no" or "usb_port_id" should be a unique identifier to connect to a device -->
-  <arg name="serial_no"     default="" />
-  <arg name="usb_port_id"   default="" /> <!-- USB "Bus#-Port#" -->
+  <arg name="serial_no"       default="" />
+  <arg name="usb_port_id"     default="" /> <!-- USB "Bus#-Port#" -->
 
   <!-- Best know configuration for generating depth registered point cloud. -->
   <arg name="mode"            default="manual" />
@@ -30,7 +33,7 @@
 
   <!-- Arguments for remapping all device namespaces -->
   <arg name="depth"            default="depth" />
-  <arg name="rgb"              default="rgb" />
+  <arg name="rgb"              default="color" />
   <arg name="ir"               default="ir" />
   <arg name="depth_registered" default="depth_registered" />
   <arg name="projector"        default="projector" />
@@ -77,6 +80,8 @@
       <arg name="ir"                        value="$(arg ir)" />
       <arg name="enable_fisheye"            value="$(arg enable_fisheye)" />
       <arg name="enable_imu"                value="$(arg enable_imu)" />
+      <arg name="enable_ir"                 value="$(arg enable_ir)" />
+      <arg name="enable_ir2"                value="$(arg enable_ir2)" />
       <arg name="publish_tf"                value="$(arg publish_tf)" />
       <arg name="mode"                      value="$(arg mode)" />
       <arg name="depth_width"               value="$(arg depth_width)" />
@@ -85,6 +90,7 @@
       <arg name="color_height"              value="$(arg color_height)" />
       <arg name="depth_fps"                 value="$(arg depth_fps)" />
       <arg name="color_fps"                 value="$(arg color_fps)" />
+      <arg name="fisheye_fps"               value="$(arg fisheye_fps)" />
     </include>
   </group> <!-- camera -->
 
