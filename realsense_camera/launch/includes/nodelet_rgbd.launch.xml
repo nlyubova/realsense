@@ -20,6 +20,7 @@
     <arg name="color_height"        default="" />
     <arg name="depth_fps"           default="" />
     <arg name="color_fps"           default="" />
+    <arg name="fisheye_fps"         default="" />
     <arg name="ir2"                 default="ir2" />
 
     <arg name="enable_depth"        default="true" />
@@ -54,6 +55,7 @@
         <param name="color_height"            type="int"  value="$(arg color_height)" />
         <param name="depth_fps"               type="int"  value="$(arg depth_fps)" />
         <param name="color_fps"               type="int"  value="$(arg color_fps)" />
+        <param name="fisheye_fps"             type="str"  value="$(arg fisheye_fps)" />
         <param name="base_frame_id"           type="str"  value="$(arg camera)_link" />
         <param name="depth_frame_id"          type="str"  value="$(arg camera)_$(arg depth)_frame" />
         <param name="color_frame_id"          type="str"  value="$(arg camera)_$(arg rgb)_frame" />
